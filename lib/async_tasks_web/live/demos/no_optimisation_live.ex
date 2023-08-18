@@ -31,6 +31,7 @@ defmodule AsyncTasksWeb.NoOptimisationLive do
         This demo is not optimised -
         <span class="font-extrabold text-red-700">Process ID: <%= raw(inspect(self())) %></span>
       </.header>
+
       <div class="mt-12">
         <.button phx-click="start-async-task" phx-value-delay={500}>500ms delay task</.button>
         <.button phx-click="start-async-task" phx-value-delay={5000}>5000ms delay task</.button>
@@ -41,6 +42,8 @@ defmodule AsyncTasksWeb.NoOptimisationLive do
           <p class="text-3xl font-bold mt-8"><%= @result %></p>
         </div>
       </div>
+
+      <.live_component module={AsyncTasksWeb.CounterComponent} id="counter" />
     </div>
     """
   end

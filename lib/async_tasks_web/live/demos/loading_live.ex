@@ -73,6 +73,8 @@ defmodule AsyncTasksWeb.LoadingLive do
           </p>
           <p class="text-3xl font-bold"><%= @result %></p>
         </div>
+
+        <.live_component module={AsyncTasksWeb.CounterComponent} id="counter" />
       </div>
     </div>
     """

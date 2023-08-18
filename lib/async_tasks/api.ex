@@ -6,7 +6,7 @@ defmodule AsyncTasks.Api do
 
   def fetch_data(delay) do
     parse_delay(delay) |> Process.sleep()
-    Task.async(fn -> "Here is the result" end)
+    Task.async(fn -> "Here is the result after #{delay}ms" end)
   end
 
   def parse_delay(delay) when is_integer(delay), do: delay
