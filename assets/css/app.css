@@ -3,3 +3,9 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+.adlam {
+    font-family: 'ADLaM Display', cursive;
+}
+.rem {
+    font-family: 'REM', sans-serif;
+}

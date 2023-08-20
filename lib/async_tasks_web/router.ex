@@ -1,4 +1,5 @@
 defmodule AsyncTasksWeb.Router do
+  alias AsyncTasksWeb.DbBackedLive
   use AsyncTasksWeb, :router
 
   pipeline :browser do
@@ -20,6 +21,7 @@ defmodule AsyncTasksWeb.Router do
     live "/", HomeLive, :home
     live "/demos/no-optimisation", NoOptimisationLive, :no_optimisation
     live "/demos/loading", LoadingLive, :loading
+    live "/demos/db-backed",  DatabaseLive, :db_backed
   end
 
   # Other scopes may use custom stacks.

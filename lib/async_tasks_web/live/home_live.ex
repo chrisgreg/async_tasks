@@ -14,6 +14,9 @@ defmodule AsyncTasksWeb.HomeLive do
     <.link navigate={~p"/demos/loading"}>
       <.button>Daredevil UX Async Tasks</.button>
     </.link>
+    <.link navigate={~p"/demos/db-backed"}>
+      <.button>Database Backed</.button>
+    </.link>
     """
   end
 end
