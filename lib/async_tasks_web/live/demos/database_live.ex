@@ -6,8 +6,28 @@ defmodule  AsyncTasksWeb.DatabaseLive do
     socket =
       socket
       |> assign(:result, nil)
+      |> assign(%{
+        monday: nil,
+        tuesday: nil,
+        wednesday: nil,
+        thursday: nil,
+        friday: nil
+      })
       |> assign(:loading, false)
 
     {:ok, socket}
+  end
+
+  def handle_event("start-async-task", %{"delay" => delay}, socket) do
+    {:ok, result} = Api.fetch_async_data(delay)
+    {:noreply, assign(socket, :result, result)}
+  end
+
+  def handle_event("reset", _, socket) do
+    socket =
+      socket
+      |> assign(:result, nil)
+
+    {:noreply, socket}
   end
 end

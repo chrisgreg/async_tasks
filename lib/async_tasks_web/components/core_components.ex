@@ -656,6 +656,20 @@ defmodule AsyncTasksWeb.CoreComponents do
     end
   end
 
+  def placeholder_day(assigns) do
+    ~H"""
+      <div class="col-span-1 h-32 border rounded-lg pt-4 pl-4 shadow-md bg-cover bg-no-repeat" style={@content && "background-image: url('/images/#{@image}.png')"}>
+        <div class="flex flex-row justify-between items-center" >
+          <p class={["font-bold text-sm rem text-zinc-600", @content && "bg-white px-2 py-1 rounded-lg shadow-md"]}><%= @day %></p>
+          <span class="relative flex h-2 w-2 mr-4">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
+          </span>
+        </div>
+      </div>
+    """
+  end
+
   @doc """
   Translates the errors for a field from a keyword list of errors.
   """

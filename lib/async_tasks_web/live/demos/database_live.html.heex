@@ -17,55 +17,16 @@
       <.button>500ms</.button>
       <.button>5000ms</.button>
       <.button>50000ms</.button>
+      <.button>Reset</.button>
     </div>
     <div>
       <h2 class="text-4xl text-zinc-700 font-semibold rem pt-12 pl-16">Kyoto</h2>
       <div class="grid grid-cols-2 p-12 gap-4">
-        <div class="col-span-1 h-28 border rounded-lg pt-4 pl-4 shadow-md">
-          <div class="flex flex-row justify-between items-center">
-            <p class="font-bold text-sm rem text-zinc-600">Monday</p>
-            <span class="relative flex h-2 w-2 mr-4">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
-            </span>
-          </div>
-        </div>
-        <div class="col-span-1 h-28 border rounded-lg pt-4 pl-4 shadow-md">
-          <div class="flex flex-row justify-between items-center">
-            <p class="font-bold text-sm rem text-zinc-600">Tuesday</p>
-            <span class="relative flex h-2 w-2 mr-4">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
-            </span>
-          </div>
-        </div>
-        <div class="col-span-1 h-28 border rounded-lg pt-4 pl-4 shadow-md">
-          <div class="flex flex-row justify-between items-center">
-            <p class="font-bold text-sm rem text-zinc-600">Wednesday</p>
-            <span class="relative flex h-2 w-2 mr-4">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
-            </span>
-          </div>
-        </div>
-        <div class="col-span-1 h-28 border rounded-lg pt-4 pl-4 shadow-md">
-          <div class="flex flex-row justify-between items-center">
-            <p class="font-bold text-sm rem text-zinc-600">Thursday</p>
-            <span class="relative flex h-2 w-2 mr-4">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
-            </span>
-          </div>
-        </div>
-        <div class="col-span-1 h-28 border rounded-lg pt-4 pl-4 shadow-md">
-          <div class="flex flex-row justify-between items-center">
-            <p class="font-bold text-sm rem text-zinc-600">Friday</p>
-            <span class="relative flex h-2 w-2 mr-4">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
-            </span>
-          </div>
-        </div>
+        <.placeholder_day day="Monday" content={@monday} image="blue-bridge" />
+        <.placeholder_day day="Tuesday" content={@tuesday} image="pink-bridge" />
+        <.placeholder_day day="Wednesday" content={@wednesday} image="purple-streets" />
+        <.placeholder_day day="Thursday" content={@thursday} image="yellow-temple" />
+        <.placeholder_day day="Friday" content={@friday} image="purple-temple" />
       </div>
     </div>
   </div>
