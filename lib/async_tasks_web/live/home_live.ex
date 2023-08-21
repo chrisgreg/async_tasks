@@ -17,6 +17,9 @@ defmodule AsyncTasksWeb.HomeLive do
     <.link navigate={~p"/demos/db-backed"}>
       <.button>Database Backed</.button>
     </.link>
+    <.link navigate={~p"/demos/pubsub"}>
+      <.button>PubSub Backed</.button>
+    </.link>
     """
   end
 end
