@@ -17,8 +17,9 @@ defmodule AsyncTasks.Application do
       # Start Finch
       {Finch, name: AsyncTasks.Finch},
       # Start the Endpoint (http/https)
-      AsyncTasksWeb.Endpoint
+      AsyncTasksWeb.Endpoint,
       # Start a worker by calling: AsyncTasks.Worker.start_link(arg)
+      {Task.Supervisor, name: AsyncTasks.TaskSupervisor}
       # {AsyncTasks.Worker, arg}
     ]
 

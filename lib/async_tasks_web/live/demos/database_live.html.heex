@@ -14,13 +14,18 @@
   </div>
   <div class="col-span-2 bg-white rounded-2xl">
     <div class="flex flex-row justify-around mt-8">
-      <.button>500ms</.button>
-      <.button>5000ms</.button>
-      <.button>50000ms</.button>
-      <.button>Reset</.button>
+      <.button phx-click="start-async-task" phx-value-delay={500}>500ms</.button>
+      <.button phx-click="start-async-task" phx-value-delay={5000}>5000ms</.button>
+      <.button phx-click="start-async-task" phx-value-delay={50_000}>50000ms</.button>
+      <.button phx-click="reset" class="bg-red-800">Reset</.button>
     </div>
     <div>
-      <h2 class="text-4xl text-zinc-700 font-semibold rem pt-12 pl-16">Kyoto</h2>
+      <div class="flex flex-row items-center justify-between pt-12 px-16">
+        <h2 class="text-4xl text-zinc-700 font-semibold rem">Kyoto</h2>
+        <p :if={@loading}>
+          <.icon name="hero-arrow-path" class="animate-spin h-5 w-5" /> Loading...
+        </p>
+      </div>
       <div class="grid grid-cols-2 p-12 gap-4">
         <.placeholder_day day="Monday" content={@result} image="blue-bridge" />
         <.placeholder_day day="Tuesday" content={@result} image="pink-bridge" />
