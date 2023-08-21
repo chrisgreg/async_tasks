@@ -55,26 +55,42 @@ defmodule AsyncTasksWeb.LoadingLive do
 
   def render(assigns) do
     ~H"""
-    <div>
-      <.back navigate={~p"/"}>Back</.back>
-      <.header class="mt-4">
-        This demo has slightly better UX -
-        <span class="font-extrabold text-red-700">Process ID: <%= raw(inspect(self())) %></span>
-      </.header>
-      <div class="mt-12">
-        <.button phx-click="start-async-task" phx-value-delay={500}>500ms delay task</.button>
-        <.button phx-click="start-async-task" phx-value-delay={5000}>5000ms delay task</.button>
-        <.button phx-click="start-async-task" phx-value-delay={50_000}>50000ms delay task</.button>
-        <.button phx-click="reset" class="bg-red-800">Reset</.button>
-
-        <div class="grid place-items-center mt-8">
-          <p :if={@loading}>
-            <.icon name="hero-arrow-path" class="animate-spin h-5 w-5" /> Loading...
-          </p>
-          <p class="text-3xl font-bold"><%= @result %></p>
+    <div class="grid grid-cols-5 grid-rows-1 h-[85vh] shadow-lg rounded-2xl  bg-[url('/images/purple-temple.png')] bg-contain">
+      <div class="col-span-3 h-full bg-no-repeat rounded-l-lg flex flex-col justify-between">
+        <div class="text-white text-4xl font-bold pt-12 pl-12 rem">
+          Slow Travel
         </div>
-
-        <.live_component module={AsyncTasksWeb.CounterComponent} id="counter" />
+        <div class="relative">
+          <div class="absolute bottom-12 left-12 right-12 ">
+            <div class="bg-white rounded-full uppercase text-sm w-fit px-4 py-2 font-bold mb-4 shadow-lg">
+              Japan
+            </div>
+            <.live_component module={AsyncTasksWeb.TipsComponent} id="tips" />
+          </div>
+        </div>
+      </div>
+      <div class="col-span-2 bg-white rounded-2xl">
+        <div class="flex flex-row justify-around mt-8">
+            <.button phx-click="start-async-task" phx-value-delay={500}>500ms</.button>
+            <.button phx-click="start-async-task" phx-value-delay={5000}>5000ms</.button>
+            <.button phx-click="start-async-task" phx-value-delay={50_000}>50000ms</.button>
+            <.button phx-click="reset" class="bg-red-800">Reset</.button>
+        </div>
+        <div>
+          <div class="flex flex-row items-center justify-between pt-12 px-16">
+            <h2 class="text-4xl text-zinc-700 font-semibold rem">Kyoto</h2>
+            <p :if={@loading}>
+              <.icon name="hero-arrow-path" class="animate-spin h-5 w-5" /> Loading...
+            </p>
+          </div>
+          <div class="grid grid-cols-2 p-12 gap-4">
+            <.placeholder_day day="Monday" content={@result} image="blue-bridge" />
+            <.placeholder_day day="Tuesday" content={@result} image="pink-bridge" />
+            <.placeholder_day day="Wednesday" content={@result} image="purple-streets" />
+            <.placeholder_day day="Thursday" content={@result} image="yellow-temple" />
+            <.placeholder_day day="Friday" content={@result} image="purple-temple" />
+          </div>
+        </div>
       </div>
     </div>
     """

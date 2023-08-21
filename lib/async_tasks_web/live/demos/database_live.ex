@@ -6,13 +6,6 @@ defmodule  AsyncTasksWeb.DatabaseLive do
     socket =
       socket
       |> assign(:result, nil)
-      |> assign(%{
-        monday: nil,
-        tuesday: nil,
-        wednesday: nil,
-        thursday: nil,
-        friday: nil
-      })
       |> assign(:loading, false)
 
     {:ok, socket}
