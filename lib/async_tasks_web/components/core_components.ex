@@ -656,9 +656,10 @@ defmodule AsyncTasksWeb.CoreComponents do
     end
   end
 
+  attr :with_animation, :boolean, default: false, required: false
   def placeholder_day(assigns) do
     ~H"""
-      <div class="col-span-1 h-32 border rounded-lg pt-4 pl-4 shadow-md bg-cover bg-no-repeat" style={@content && "background-image: url('/images/#{@image}.png')"}>
+      <div class="day-card col-span-1 h-32 border rounded-lg pt-4 pl-4 shadow-md bg-cover bg-no-repeat" style={@content && "background-image: url('/images/#{@image}.png')"} mod-pulse={@with_animation && @content && "true"}>
         <div class="flex flex-row justify-between items-center" >
           <p class={["font-bold text-sm rem text-zinc-600", @content && "bg-white px-2 py-1 rounded-lg shadow-md"]}><%= @day %></p>
           <span class="relative flex h-2 w-2 mr-4">

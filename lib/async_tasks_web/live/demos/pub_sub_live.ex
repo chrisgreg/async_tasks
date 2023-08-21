@@ -5,7 +5,7 @@ defmodule  AsyncTasksWeb.PubSubLive do
   @demo_name "pubsub"
 
   def mount(_params, _session, socket) do
-    result = Api.has_data?(@demo_name) |> IO.inspect()
+    result = Api.has_data?(@demo_name)
 
     if connected?(socket), do: Api.subscribe()
 
@@ -40,14 +40,13 @@ defmodule  AsyncTasksWeb.PubSubLive do
 
   def fetch_data(delay) do
     Task.Supervisor.async_nolink(AsyncTasks.TaskSupervisor, fn ->
-      Api.fetch_and_store_and_emit_data(delay)
+      Api.fetch_and_store_and_emit_data(@demo_name, delay)
     end)
   end
 
   def handle_info({Api, [:data, :fetched], result}, socket) do
-    socket
-    |> assign(socket, %{result: result, loading: false})
-    |> push_event("data-fetched", %{result: result})
+    socket = socket
+    |> assign(%{result: true, loading: false})
 
     {:noreply, socket}
   end

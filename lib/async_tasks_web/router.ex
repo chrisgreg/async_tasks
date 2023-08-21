@@ -23,6 +23,7 @@ defmodule AsyncTasksWeb.Router do
     live "/demos/loading", LoadingLive, :loading
     live "/demos/db-backed",  DatabaseLive, :db_backed
     live "/demos/pubsub",  PubSubLive, :pub_sub
+    live "/demos/final",  FinalLive, :final
   end
 
   # Other scopes may use custom stacks.
