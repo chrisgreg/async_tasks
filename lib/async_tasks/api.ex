@@ -1,31 +1,22 @@
 defmodule AsyncTasks.Api do
-  alias AsyncTasks.TravelData
-  alias AsyncTasks.Repo
+  alias AsyncTasks.{TravelData, Repo}
+  alias ExternalService
   import Ecto.Query
 
   def fetch_async_data(delay \\ 5000) do
-    result = fetch_data(delay) |> Task.await()
+    result = ExternalService.fetch_data(delay) |> Task.await()
     {:ok, result}
   end
-
-  def fetch_data(delay) do
-    parse_delay(delay) |> Process.sleep()
-    Task.async(fn -> "Here is the result after #{delay}ms" end)
-  end
-
-  def parse_delay(delay) when is_integer(delay), do: delay
-  def parse_delay(delay) when is_binary(delay), do: String.to_integer(delay)
 
   def fetch_and_store_data(delay \\ 5000) do
-    {:ok, result} = Task.await(fetch_data(delay))
-      |> store_data("database")
-
-    {:ok, result}
+    ExternalService.fetch_data(delay)
+    |> Task.await()
+    |> store_data("database")
   end
 
   def fetch_and_store_and_emit_data(demo_name, delay \\ 5000) do
     Task.Supervisor.async_nolink(AsyncTasks.TaskSupervisor, fn ->
-      fetch_data(delay)
+      ExternalService.fetch_data(delay)
       |> store_data(demo_name)
       |> notify_subscribers([:data, :fetched])
     end)
@@ -37,6 +28,7 @@ defmodule AsyncTasks.Api do
     |> Repo.insert()
   end
 
+  # Database functions
   def has_data?(demo_name) do
     Repo.exists?(from t in TravelData, where: t.demo == ^demo_name)
   end
@@ -44,7 +36,6 @@ defmodule AsyncTasks.Api do
   def reset!(demo_name) do
     Repo.delete_all(from t in TravelData, where: t.demo == ^demo_name)
   end
-
 
   ## PubSub ##
   @topic "async_tasks"

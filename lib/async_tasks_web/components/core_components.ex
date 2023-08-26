@@ -664,8 +664,13 @@ defmodule AsyncTasksWeb.CoreComponents do
   def placeholder_day(assigns) do
     ~H"""
       <div class={
-          ["day-card col-span-1 h-32 border rounded-lg pt-4 pl-4 shadow-md bg-cover bg-no-repeat transition-all", !@content && "bg-zinc-100 border-dotted opacity-50 border-4 border-pink-300", @content && "hover:scale-105 hover:shadow-lg hover:cursor-pointer"]
-        } style={@content && "background-image: url('/images/#{@image}.png')"} mod-pulse={@with_animation && @content && "true"}>
+          ["day-card col-span-1 h-32 border rounded-lg pt-4 pl-4 shadow-md bg-cover bg-no-repeat transition-all",
+          !@content && "bg-zinc-100 border-dotted opacity-50 border-4 border-pink-300",
+          @content && "hover:scale-105 hover:shadow-lg hover:cursor-pointer"]
+        }
+        style={@content && "background-image: url('/images/#{@image}.png')"}
+        mod-pulse={@with_animation && @content && "true"}
+      >
         <div class="flex flex-row justify-between items-center" >
           <p class={["font-bold text-base rem text-zinc-600", @content && "bg-white px-2 py-1 rounded-lg shadow-md text-xs uppercase"]}><%= @day %></p>
           <span class="relative flex h-2 w-2 mr-4" :if={@loading}>
