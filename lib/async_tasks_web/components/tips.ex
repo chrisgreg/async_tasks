@@ -34,7 +34,7 @@ defmodule AsyncTasksWeb.TipsComponent do
       <div class=" bg-orange-100 bg-opacity-80 p-4 rounded-lg flex-row flex justify-between rem">
         <div class="w-full">
           <h2 class="font-semibold text-sm text-orange-900">Did you know?</h2>
-          <p class="text-orange-900 text-xl">
+          <p class="text-orange-900 text-xl pr-8">
             <%= @tip %>
           </p>
         </div>

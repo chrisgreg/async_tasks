@@ -24,11 +24,11 @@ defmodule AsyncTasks.Api do
   end
 
   def fetch_and_store_and_emit_data(demo_name, delay \\ 5000) do
-    {:ok, result} = Task.await(fetch_data(delay))
+    Task.Supervisor.async_nolink(AsyncTasks.TaskSupervisor, fn ->
+      fetch_data(delay)
       |> store_data(demo_name)
       |> notify_subscribers([:data, :fetched])
-
-    {:ok, result}
+    end)
   end
 
   def store_data(_results, demo_name) do

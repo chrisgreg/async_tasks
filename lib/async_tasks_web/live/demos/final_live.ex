@@ -39,9 +39,7 @@ defmodule  AsyncTasksWeb.FinalLive do
   end
 
   def fetch_data(delay) do
-    Task.Supervisor.async_nolink(AsyncTasks.TaskSupervisor, fn ->
-      Api.fetch_and_store_and_emit_data(@demo_name, delay)
-    end)
+    Api.fetch_and_store_and_emit_data(@demo_name, delay)
   end
 
   def handle_info({Api, [:data, :fetched], result}, socket) do
