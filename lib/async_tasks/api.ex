@@ -15,11 +15,9 @@ defmodule AsyncTasks.Api do
   end
 
   def fetch_and_store_and_emit_data(demo_name, delay \\ 5000) do
-    Task.Supervisor.async_nolink(AsyncTasks.TaskSupervisor, fn ->
-      ExternalService.fetch_data(delay)
-      |> store_data(demo_name)
-      |> notify_subscribers([:data, :fetched])
-    end)
+    ExternalService.fetch_data(delay)
+    |> store_data(demo_name)
+    |> notify_subscribers([:data, :fetched])
   end
 
   def store_data(_results, demo_name) do
