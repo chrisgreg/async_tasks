@@ -40,6 +40,15 @@ defmodule AsyncTasksWeb.NoOptimisationLive do
         </div>
       </div>
       <div class="col-span-2 bg-white rounded-2xl">
+        <div class="flex flex-row justify-between items-center w-full m-8">
+          <h2 class="uppercase font-bold px-3 py-2 rounded bg-zinc-200 text-pink-500 w-fit text-xs">No Optimisation demo</h2>
+          <.link
+            navigate={~p"/demos/loading"}
+            class="rounded-lg bg-zinc-100 px-3 py-2 hover:bg-zinc-200/80 mr-12 font-semibold text-sm"
+          >
+            Slightly Better Demo <span aria-hidden="true">&rarr;</span>
+          </.link>
+        </div>
         <div class="flex flex-row justify-around mt-8">
             <.button phx-click="start-async-task" phx-value-delay={500}>500ms</.button>
             <.button phx-click="start-async-task" phx-value-delay={5000}>5000ms</.button>
