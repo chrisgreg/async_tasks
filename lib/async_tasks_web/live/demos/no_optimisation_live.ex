@@ -57,7 +57,7 @@ defmodule AsyncTasksWeb.NoOptimisationLive do
         </div>
         <div>
           <h2 class="text-4xl text-zinc-700 font-semibold rem pt-12 pl-16">Kyoto</h2>
-          <div class="grid grid-cols-2 p-12 gap-4">
+          <div class="grid grid-cols-2 p-12 gap-4 pt-4">
             <.placeholder_day day="Monday" content={@result} image="blue-bridge" />
             <.placeholder_day day="Tuesday" content={@result} image="pink-bridge" />
             <.placeholder_day day="Wednesday" content={@result} image="purple-streets" />

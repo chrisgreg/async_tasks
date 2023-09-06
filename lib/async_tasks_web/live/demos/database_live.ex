@@ -37,7 +37,7 @@ defmodule  AsyncTasksWeb.DatabaseLive do
   end
 
   def fetch_data(delay) do
-    pid = self()
+    parent_pid = self()
 
     # The async task process is linked to the parent LiveView process
     # When the LiveView process exits, it kills any linked processes like the async task
@@ -46,7 +46,7 @@ defmodule  AsyncTasksWeb.DatabaseLive do
     # So we have to use a TaskSupervisor which uses an external BEAM process
     Task.Supervisor.async_nolink(AsyncTasks.TaskSupervisor, fn ->
       result = Api.fetch_and_store_data(delay)
-      send(pid, result)
+      send(parent_pid, result)
     end)
   end
 
@@ -59,7 +59,7 @@ defmodule  AsyncTasksWeb.DatabaseLive do
     {:noreply, socket}
   end
 
-  def handle_info(message, socket) do
+  def handle_info(_message, socket) do
     {:noreply, socket}
   end
 end

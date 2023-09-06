@@ -31,25 +31,19 @@ defmodule AsyncTasksWeb.LoadingLive do
   end
 
   def fetch_data(delay) do
-    pid = self()
-
     Task.async(fn ->
-      result = Api.fetch_async_data(delay)
-      send(pid, result)
+      Api.fetch_async_data(delay)
     end)
   end
 
-  def handle_info({:ok, result}, socket) do
+  def handle_info({ref, result}, socket) do
+    Process.demonitor(ref, [:flush])
+
     socket =
       socket
       |> assign(:loading, false)
       |> assign(:result, result)
 
-    {:noreply, socket}
-  end
-
-  def handle_info(message, socket) do
-    IO.inspect(message)
     {:noreply, socket}
   end
 
@@ -92,7 +86,7 @@ defmodule AsyncTasksWeb.LoadingLive do
               <.icon name="hero-arrow-path" class="animate-spin h-5 w-5" /> Loading...
             </p>
           </div>
-          <div class="grid grid-cols-2 p-12 gap-4">
+          <div class="grid grid-cols-2 p-12 gap-4 pt-4">
             <.placeholder_day day="Monday" content={@result} image="blue-bridge" />
             <.placeholder_day day="Tuesday" content={@result} image="pink-bridge" />
             <.placeholder_day day="Wednesday" content={@result} image="purple-streets" />

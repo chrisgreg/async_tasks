@@ -26,12 +26,42 @@
           <.icon name="hero-arrow-path" class="animate-spin h-5 w-5" /> Loading...
         </p>
       </div>
-      <div class="grid grid-cols-2 p-12 gap-4">
-        <.placeholder_day loading={@loading} day="Monday" content={@result} image="blue-bridge" with_animation={true} />
-        <.placeholder_day loading={@loading} day="Tuesday" content={@result} image="pink-bridge" with_animation={true} />
-        <.placeholder_day loading={@loading} day="Wednesday" content={@result} image="purple-streets" with_animation={true} />
-        <.placeholder_day loading={@loading} day="Thursday" content={@result} image="yellow-temple" with_animation={true} />
-        <.placeholder_day loading={@loading} day="Friday" content={@result} image="purple-temple" with_animation={true} />
+      <div class="grid grid-cols-2 p-12 pt-4 gap-4">
+        <.placeholder_day
+          loading={@loading}
+          day="Monday"
+          content={@result}
+          image="blue-bridge"
+          with_animation={true}
+        />
+        <.placeholder_day
+          loading={@loading}
+          day="Tuesday"
+          content={@result}
+          image="pink-bridge"
+          with_animation={true}
+        />
+        <.placeholder_day
+          loading={@loading}
+          day="Wednesday"
+          content={@result}
+          image="purple-streets"
+          with_animation={true}
+        />
+        <.placeholder_day
+          loading={@loading}
+          day="Thursday"
+          content={@result}
+          image="yellow-temple"
+          with_animation={true}
+        />
+        <.placeholder_day
+          loading={@loading}
+          day="Friday"
+          content={@result}
+          image="purple-temple"
+          with_animation={true}
+        />
       </div>
     </div>
   </div>

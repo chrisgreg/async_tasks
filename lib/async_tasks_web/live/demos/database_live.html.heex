@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="col-span-2 bg-white rounded-2xl">
-    <div class="flex flex-row justify-between items-center w-full m-8">
+    <div class="flex flex-row justify-between items-center w-full m-8 mb-0">
       <h2 class="uppercase font-bold px-3 py-2 rounded bg-zinc-200 text-pink-500 w-fit text-xs">
         Database demo
       </h2>
@@ -37,7 +37,7 @@
           <.icon name="hero-arrow-path" class="animate-spin h-5 w-5" /> Loading...
         </p>
       </div>
-      <div class="grid grid-cols-2 p-12 gap-4">
+      <div class="grid grid-cols-2 p-12 gap-4 pt-4">
         <.placeholder_day loading={@loading} day="Monday" content={@result} image="blue-bridge" />
         <.placeholder_day loading={@loading} day="Tuesday" content={@result} image="pink-bridge" />
         <.placeholder_day
