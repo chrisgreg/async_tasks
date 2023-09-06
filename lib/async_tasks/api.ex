@@ -20,6 +20,11 @@ defmodule AsyncTasks.Api do
     |> notify_subscribers([:data, :fetched])
   end
 
+  def fetch_and_fail(demo_name, delay \\ 5000) do
+    result = ExternalService.fetch_data(delay)
+    notify_subscribers({:ok, result}, [:data, :error])
+  end
+
   def store_data(_results, demo_name) do
     %TravelData{}
     |> TravelData.changeset(%{fetched: true, demo: demo_name})
