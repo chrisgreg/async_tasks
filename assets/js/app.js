@@ -22,11 +22,52 @@ import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
 
+let Hooks = {};
+
+Hooks.Confetti = {
+  mounted() {
+    this.handleEvent("confetti:stars", () => this.stars());
+  },
+  stars() {
+    var defaults = {
+      spread: 360,
+      ticks: 50,
+      gravity: 0,
+      decay: 0.94,
+      startVelocity: 30,
+      shapes: ["star"],
+      colors: ["FFE400", "fb828b", "E89400", "FFCA6C", "FDFFB8"],
+    };
+
+    function shoot() {
+      confetti({
+        ...defaults,
+        particleCount: 400,
+        scalar: 1.5,
+        shapes: ["star"],
+      });
+
+      confetti({
+        ...defaults,
+        particleCount: 100,
+        scalar: 0.75,
+        shapes: ["circle"],
+      });
+    }
+
+    setTimeout(shoot, 0);
+    setTimeout(shoot, 100);
+    setTimeout(shoot, 200);
+  },
+};
+
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
-let liveSocket = new LiveSocket("/live", Socket, {
-  params: { _csrf_token: csrfToken },
+
+  let liveSocket = new LiveSocket("/live", Socket, {
+    params: { _csrf_token: csrfToken },
+    hooks: Hooks,
 });
 
 // Show progress bar on live navigation and form submits

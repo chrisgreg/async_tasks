@@ -47,11 +47,12 @@ defmodule  AsyncTasksWeb.FinalLive do
   def handle_info({Api, [:data, :fetched], _result}, socket) do
     socket = socket
     |> assign(%{result: true, loading: false})
+    |> push_event("confetti:stars", %{})
 
     {:noreply, socket}
   end
 
-  def handle_info(message, socket) do
+  def handle_info(_message, socket) do
     {:noreply, socket}
   end
 end
