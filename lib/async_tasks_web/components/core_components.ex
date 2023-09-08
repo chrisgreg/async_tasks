@@ -658,6 +658,7 @@ defmodule AsyncTasksWeb.CoreComponents do
 
   attr :content, :string, default: nil
   attr :image, :string, default: nil
+  attr :day, :string, default: "Monday", required: false
   attr :with_animation, :boolean, default: false, required: false
   attr :loading, :boolean, default: false, required: false
 
